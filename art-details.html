@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Artwork details by KianLooksBetter.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <title>Art Details | KianLooksBetter</title>
+</head>
+<body>
+  <div class="quick-dm-links">
+    <a class="quick-dm-btn" href="https://wa.me/237676636111" target="_blank" rel="noopener noreferrer" aria-label="Message on WhatsApp">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp--v1.png" alt="WhatsApp">
+    </a>
+    <a class="quick-dm-btn" href="https://www.instagram.com/direct/t/17841401387039399" target="_blank" rel="noopener noreferrer" aria-label="Message on Instagram">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new--v1.png" alt="Instagram">
+    </a>
+  </div>
+
+  <div class="nav-grid2">
+    <a href="index.html#hero" data-after="Home"><div class="nav-options2"><img src="icons/home-icon.svg"><p style="margin-left: -4px;">Home</p></div></a>
+    <a href="index.html#gallery" data-after="gallery"><div class="nav-options2"><img src="icons/gallery-icon.svg"><p style="margin-left: -7px;">Gallery</p></div></a>
+    <a href="index.html#services" data-after="Service"><div class="nav-options2"><img src="icons/commission-icon.svg"><p>Commi..</p></div></a>
+    <a href="index.html#contact" data-after="Contact"><div class="nav-options2"><img src="icons/contact-icon.svg"><p>Contact</p></div></a>
+  </div>
+
+  <div class="nav-grid">
+    <a href="index.html#hero" data-after="Home"><div class="nav-options"><img src="icons/home-icon.svg"><p>Home</p></div></a>
+    <a href="index.html#gallery" data-after="gallery"><div class="nav-options"><img src="icons/gallery-icon.svg"><p>Gallery</p></div></a>
+    <a href="index.html#services" data-after="Service"><div class="nav-options"><img src="icons/commission-icon.svg"><p>Commisions</p></div></a>
+    <a href="index.html#contact" data-after="Contact"><div class="nav-options"><img src="icons/contact-icon.svg"><p>Contact</p></div></a>
+  </div>
+
+  <main class="art-detail-page">
+    <section class="art-detail-image-wrap">
+      <img id="art-detail-image" src="" alt="">
+    </section>
+    <section class="art-detail-info-wrap">
+      <h1 id="art-detail-title">Artwork</h1>
+      <p id="art-detail-description"></p>
+      <a class="order-button" href="https://wa.me/237676636111" target="_blank" rel="noopener noreferrer">Message on WhatsApp</a>
+    </section>
+  </main>
+
+  <section id="footer">
+    <div class="footer container">
+      <div style="display: flex; padding-top: 2%; padding-bottom: 10px;">
+        <div style="opacity: 0.5;"><a href="https://www.youtube.com/@kianlooksbetter" target="_blank"><img src="icons/youtube-icon.svg" /></a></div>
+        <div style="opacity: 0.5;"><a href="https://www.instagram.com/kianlooksbetter" target="_blank"><img src="icons/instagram-icon.svg" /></a></div>
+        <div style="opacity: 0.5;"><a href="https://www.linkedin.com/kianlooksbetter" target="_blank"><img src="icons/linkedin-icon.svg" /></a></div>
+        <div style="opacity: 0.5;"><a href="https://www.deviantart.com/kianlooksbetter" target="_blank"><img style="border-radius: 50%;" src="icons/deviantart-icon.svg" /></a></div>
+      </div>
+      <p style="padding-bottom: 2%;">Â© All rights reserved by Kian Harrison</p>
+    </div>
+  </section>
+
+  <div class="image-preview-modal" id="image-preview-modal" aria-hidden="true">
+    <button class="image-preview-close" id="image-preview-close" aria-label="Close image preview">X</button>
+    <div class="image-preview-stage" id="image-preview-stage">
+      <img class="image-preview-img" id="image-preview-img" src="" alt="">
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+  <script src="./art-details.js"></script>
+</body>
+</html>

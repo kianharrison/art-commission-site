@@ -81,7 +81,7 @@ const serviceNameLabelElement = document.getElementById("service-name-label");
 const selectedImageElement = document.querySelector(".selected-img");
 const processImageElements = document.querySelectorAll(".process-image");
 const instagramOrderLink = document.getElementById("order-instagram");
-const phoneOrderLink = document.getElementById("order-phone");
+const whatsappOrderLink = document.getElementById("order-whatsapp");
 
 if (titleElement) {
   titleElement.textContent = `${service.name} Commission`;
@@ -115,6 +115,13 @@ if (includesElement) {
 if (samplesElement) {
   samplesElement.innerHTML = "";
   service.samples.forEach((imagePath, index) => {
+    const artIdMatch = imagePath.match(/art\/(\d+)\.(jpg|png)/i);
+    const artId = artIdMatch ? artIdMatch[1] : "1";
+
+    const link = document.createElement("a");
+    link.href = `art-details.html?art=${artId}`;
+    link.className = "art-link";
+
     const card = document.createElement("article");
     card.className = "sample-card";
 
@@ -124,7 +131,8 @@ if (samplesElement) {
     image.loading = "lazy";
 
     card.appendChild(image);
-    samplesElement.appendChild(card);
+    link.appendChild(card);
+    samplesElement.appendChild(link);
   });
 }
 
@@ -146,6 +154,6 @@ if (instagramOrderLink) {
   instagramOrderLink.href = "https://www.instagram.com/direct/t/17841401387039399";
 }
 
-if (phoneOrderLink) {
-  phoneOrderLink.href = "tel:+237676636111";
+if (whatsappOrderLink) {
+  whatsappOrderLink.href = "https://wa.me/237676636111";
 }

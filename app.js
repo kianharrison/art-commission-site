@@ -95,7 +95,7 @@ const previewStage = document.getElementById("image-preview-stage");
 const previewClose = document.getElementById("image-preview-close");
 
 if (previewModal && previewImage && previewStage && previewClose) {
-  const previewableImages = document.querySelectorAll(".selected-img, .process-image, .sample-card img");
+  const previewableImages = document.querySelectorAll(".selected-img, .process-image, #art-detail-image");
   let currentZoom = 1;
 
   const setZoom = (zoomLevel) => {
