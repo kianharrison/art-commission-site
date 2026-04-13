@@ -1107,11 +1107,13 @@ p {
   column-gap: 20px;
   align-items: stretch;
   --detail-card-h: min(74vh, 640px);
+  margin-bottom: 6vw;
 }
 
 .sub-service-detail-page{
   padding: 28px 7% 88px;
   margin-left: 90px;
+  margin-bottom: 4vw;
 }
 
 .order-button{
