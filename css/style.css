@@ -2023,7 +2023,7 @@ body {
 
 /* Art gallery cards: tighter corners + clear hover response */
 .gallery-page .art-display-grid .card[data-category="art"] .gallery-media {
-  border-radius: 4px !important;
+  border-radius: 1px !important;
   transition:
     transform 0.4s ease-in-out,
     filter 0.4s ease-in-out,
