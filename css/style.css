@@ -1531,9 +1531,12 @@ p {
   grid-column: span 4;
   grid-row: span 3;
   min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 14px;
   overflow: hidden;
-  background: transparent;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.42), rgba(235, 235, 246, 0.5));
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
@@ -1558,7 +1561,20 @@ p {
   cursor: default;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  padding: 8px;
+}
+
+.art-display-grid .video-card {
+  padding: 0;
+  background: #111;
+}
+
+.art-display-grid .video-card iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .art-detail-page {
@@ -1601,6 +1617,16 @@ p {
 }
 
 @media (max-width: 999px) {
+  .gallery-filter-row {
+    gap: 8px;
+  }
+
+  .gallery-filter-group {
+    width: 100%;
+    max-width: 270px;
+    justify-content: space-between;
+  }
+
   .art-display-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 120px;
@@ -1647,6 +1673,66 @@ p {
 
 .gallery-page .feed-grid {
   padding-bottom: 72px;
+}
+
+.gallery-filter-row {
+  width: 90%;
+  max-width: 1224px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 6px;
+}
+
+.gallery-filter-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.gallery-filter-group label {
+  font-size: 1.05rem;
+  color: rgb(62, 62, 85);
+  margin-bottom: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06rem;
+  white-space: nowrap;
+}
+
+.gallery-filter-select {
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(62, 62, 85, 0.24);
+  background-color: rgba(255, 255, 255, 0.76);
+  color: rgb(47, 47, 65);
+  font-size: 1.3rem;
+  padding: 0 8px;
+  min-width: 132px;
+}
+
+.gallery-filter-select:focus {
+  outline: 2px solid rgba(158, 158, 207, 0.6);
+  outline-offset: 2px;
+}
+
+.gallery-empty-state {
+  display: none;
+  font-size: 1.5rem;
+  color: rgb(62, 62, 85);
+  text-align: center;
+  padding: 14px 0 0;
+}
+
+.gallery-empty-state.show {
+  display: block;
+}
+
+.card.gallery-hidden {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

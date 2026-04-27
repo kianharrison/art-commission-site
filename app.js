@@ -148,3 +148,190 @@ if (previewModal && previewImage && previewStage && previewClose) {
     }
   });
 }
+
+const galleryCategorySelect = document.getElementById("gallery-category");
+const artSubcategorySelect = document.getElementById("art-subcategory");
+const artSubcategoryGroup = document.getElementById("art-subcategory-group");
+const galleryGrid = document.getElementById("gallery-grid");
+const galleryEmptyState = document.getElementById("gallery-empty-state");
+
+if (galleryCategorySelect && artSubcategorySelect && galleryGrid) {
+  const YOUTUBE_ANIMATION_CONFIG = {
+    // Add your real channel id (UC...) and YouTube Data API key to auto-load videos.
+    channelId: "UCufJo4cDL_B6-X8lgVWNsQQ",
+    apiKey: "AIzaSyDrzZBSBVhDkenFhkfDObQy2kA1TEEPWe0",
+    maxResults: 6,
+    fallbackVideoIds: [],
+  };
+
+  const createVideoCard = (videoId, title) => {
+    const card = document.createElement("div");
+    card.className = "card video-card";
+    card.dataset.category = "animation";
+    card.dataset.artType = "all";
+    card.innerHTML = `
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/${videoId}"
+        title="${title || "Animation video"}"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    `;
+    return card;
+  };
+
+  const addFallbackAnimationCards = () => {
+    if (!YOUTUBE_ANIMATION_CONFIG.fallbackVideoIds.length) {
+      return;
+    }
+
+    YOUTUBE_ANIMATION_CONFIG.fallbackVideoIds.forEach((videoId, index) => {
+      galleryGrid.appendChild(
+        createVideoCard(videoId, `Animation video ${index + 1}`)
+      );
+    });
+  };
+
+  const fetchYoutubeJson = async (endpoint, params) => {
+    const url = new URL(`https://www.googleapis.com/youtube/v3/${endpoint}`);
+    url.search = new URLSearchParams({
+      ...params,
+      key: YOUTUBE_ANIMATION_CONFIG.apiKey,
+    }).toString();
+
+    const response = await fetch(url.toString());
+    if (!response.ok) {
+      throw new Error(`Unable to load YouTube ${endpoint}.`);
+    }
+
+    return response.json();
+  };
+
+  const getUploadsPlaylistId = async () => {
+    const data = await fetchYoutubeJson("channels", {
+      part: "contentDetails",
+      id: YOUTUBE_ANIMATION_CONFIG.channelId,
+      maxResults: "1",
+    });
+
+    const channel = (data.items || [])[0];
+    return (
+      channel &&
+      channel.contentDetails &&
+      channel.contentDetails.relatedPlaylists &&
+      channel.contentDetails.relatedPlaylists.uploads
+    );
+  };
+
+  const getChannelUploadVideos = async () => {
+    const uploadsPlaylistId = await getUploadsPlaylistId();
+    if (!uploadsPlaylistId) {
+      return [];
+    }
+
+    const collected = [];
+    const seen = new Set();
+    let pageToken = "";
+
+    while (collected.length < YOUTUBE_ANIMATION_CONFIG.maxResults) {
+      const data = await fetchYoutubeJson("playlistItems", {
+        part: "snippet,contentDetails",
+        playlistId: uploadsPlaylistId,
+        maxResults: "50",
+        pageToken,
+      });
+
+      const items = data.items || [];
+      items.forEach((item) => {
+        const videoId =
+          (item.contentDetails && item.contentDetails.videoId) ||
+          (item.snippet &&
+            item.snippet.resourceId &&
+            item.snippet.resourceId.videoId);
+        const title = item.snippet && item.snippet.title;
+
+        if (!videoId || seen.has(videoId)) {
+          return;
+        }
+
+        seen.add(videoId);
+        collected.push({ videoId, title });
+      });
+
+      if (!data.nextPageToken || !items.length) {
+        break;
+      }
+
+      pageToken = data.nextPageToken;
+    }
+
+    return collected.slice(0, YOUTUBE_ANIMATION_CONFIG.maxResults);
+  };
+
+  const loadAnimationCards = async () => {
+    if (!YOUTUBE_ANIMATION_CONFIG.apiKey || !YOUTUBE_ANIMATION_CONFIG.channelId) {
+      addFallbackAnimationCards();
+      return;
+    }
+
+    try {
+      const uploadedVideos = await getChannelUploadVideos();
+      if (!uploadedVideos.length) {
+        addFallbackAnimationCards();
+        return;
+      }
+
+      uploadedVideos.forEach((video) => {
+        galleryGrid.appendChild(
+          createVideoCard(video.videoId, video.title || "Animation video")
+        );
+      });
+    } catch (error) {
+      addFallbackAnimationCards();
+    }
+  };
+
+  const getGalleryCards = () => galleryGrid.querySelectorAll(".card");
+
+  const applyGalleryFilters = () => {
+    const category = galleryCategorySelect.value;
+    const artType = artSubcategorySelect.value;
+
+    if (artSubcategoryGroup) {
+      artSubcategoryGroup.style.display = category === "art" ? "flex" : "none";
+    }
+
+    let visibleCount = 0;
+
+    getGalleryCards().forEach((card) => {
+      const cardCategory = card.dataset.category || "art";
+      const cardArtType = card.dataset.artType || "portrait";
+
+      const matchesCategory = cardCategory === category;
+      const matchesArtType =
+        category !== "art" || artType === "all" || cardArtType === artType;
+      const showCard = matchesCategory && matchesArtType;
+
+      card.classList.toggle("gallery-hidden", !showCard);
+      if (showCard) {
+        visibleCount += 1;
+      }
+    });
+
+    if (galleryEmptyState) {
+      galleryEmptyState.textContent =
+        category === "animation"
+          ? "No animation videos available yet. Check back soon."
+          : "No items in this category yet. Please check back soon.";
+      galleryEmptyState.classList.toggle("show", visibleCount === 0);
+    }
+  };
+
+  galleryCategorySelect.addEventListener("change", applyGalleryFilters);
+  artSubcategorySelect.addEventListener("change", applyGalleryFilters);
+  loadAnimationCards().finally(() => {
+    applyStagger(".photo-gallery2 .card", 70);
+    applyGalleryFilters();
+  });
+}
