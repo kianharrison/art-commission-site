@@ -2,42 +2,42 @@ const ART_DATA = {
   1: {
     title: "Expressive Portrait I",
     image: "art/1.jpg",
-    processImages: ["art/1.jpg", "art/1_2.png", "art/1_3.png"],
+    processImages: ["art/1.jpg", "art/1_1.png", "art/1_2.png"],
     description:
       "A bright and expressive headshot centered on emotion, clean lighting, and character personality.",
   },
   2: {
     title: "Expressive Portrait II",
     image: "art/2.jpg",
-    processImages: ["art/2.jpg", "art/2_1.png", "art/2_3.png"],
+    processImages: ["art/2.jpg", "art/2_1.png", "art/2_2.png"],
     description:
       "A festive portrait piece with soft tonal blending and playful color atmosphere.",
   },
   3: {
     title: "Character Concept",
     image: "art/3.png",
-    processImages: ["art/1.jpg", "art/2.jpg", "art/4.png"],
+    processImages: ["art/3.png", "art/3_1.png", "art/3_2.png"],
     description:
       "Stylized character artwork with stronger contrast and cinematic framing.",
   },
   4: {
     title: "City Vibes Illustration",
     image: "art/4.png",
-    processImages: ["art/5.jpg", "art/1.jpg", "art/3.png"],
+    processImages: ["art/4.png", "art/4_1.png", "art/4_2.png"],
     description:
       "A confident composition combining mood, costume detail, and polished digital rendering.",
   },
   5: {
     title: "Story Panel Artwork",
     image: "art/5.jpg",
-    processImages: ["art/2.jpg", "art/1.jpg", "art/3.png"],
+    processImages: ["art/5.jpg", "art/5_1.png", "art/5_2.png"],
     description:
       "Narrative-focused artwork with a balanced composition and smooth painterly finish.",
   },
   6: {
     title: "Neon Pulse Character",
     image: "art/6.png",
-    processImages: ["art/6.png", "art/6_2.png", "art/6_3.png"],
+    processImages: ["art/6.png", "art/6_1.png", "art/6_2.png"],
     description:
       "Dynamic character artwork with layered lighting and clean finishing details.",
   },
@@ -175,7 +175,7 @@ const resolveProcessImages = async () => {
   const dynamic = [art.image];
   const extensions = ["png", "jpg", "jpeg", "webp"];
 
-  for (let step = 2; step <= 8; step += 1) {
+  for (let step = 1; step <= 8; step += 1) {
     let foundSource = "";
 
     for (const ext of extensions) {
