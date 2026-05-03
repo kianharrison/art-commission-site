@@ -1196,9 +1196,9 @@ p {
 
 .service-detail-panel {
   background-color: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(62, 62, 85, 0.12);
+  border: none;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
+  border-radius: 0;
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -1267,7 +1267,7 @@ p {
 }
 
 .sample-card {
-  border-radius: 14px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1284,12 +1284,13 @@ p {
   height: 100%;
   aspect-ratio: 4/5;
   object-fit: cover;
+  border-radius: 4px;
 }
 
 .selected-img-section {
   background-color: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(62, 62, 85, 0.12);
-  border-radius: 20px;
+  border: none;
+  border-radius: 0;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   padding: 14px;
   display: flex;
@@ -1302,7 +1303,7 @@ p {
   flex: 1;
   min-height: 0;
   aspect-ratio: auto;
-  border-radius: 14px;
+  border-radius: 0;
   object-fit: cover;
   object-position: center;
   background-color: rgba(0, 0, 0, 0.08);
@@ -1314,6 +1315,7 @@ p {
 }
 
 .selected-img:hover {
+  transition-delay: 0.08s;
   transform: scale(1.01);
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
 }
@@ -1321,7 +1323,7 @@ p {
 .process-image {
   width: 92%;
   aspect-ratio: 1 / 1;
-  border-radius: 10px;
+  border-radius: 0;
   border: 1px solid rgba(62, 62, 85, 0.1);
   margin: 0 auto;
   cursor: default;
@@ -1717,8 +1719,8 @@ p {
 
 .animation-detail-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -20px;
+  right: -55px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -1747,7 +1749,7 @@ p {
 
 .art-detail-page {
   margin-left: 90px;
-  padding: 26px 7% 70px;
+  padding: 26px 7% 160px;
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 18px;
@@ -1761,8 +1763,8 @@ p {
 .art-detail-image-wrap,
 .art-detail-info-wrap {
   background-color: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(62, 62, 85, 0.14);
-  border-radius: 20px;
+  border: none;
+  border-radius: 0;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
   padding: 16px;
 }
@@ -1771,7 +1773,7 @@ p {
   width: 100%;
   height: min(72vh, 680px);
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 0;
 }
 
 .art-image-switcher {
@@ -1847,7 +1849,7 @@ p {
 
   .art-detail-page {
     margin-left: 0;
-    padding: 20px 5% 110px;
+    padding: 20px 5% 180px;
     grid-template-columns: 1fr;
   }
 
@@ -1917,13 +1919,13 @@ p {
 
 .gallery-filter-select:hover {
   transform: scale(1.03);
-  border-color: rgba(158, 158, 207, 0.8);
-  box-shadow: 0 0 0 4px rgba(158, 158, 207, 0.15);
-  background-color: rgba(255, 255, 255, 0.94);
+  border-color: rgba(255, 255, 255, 0.36);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.12);
 }
 
 .gallery-filter-select:focus {
-  outline: 2px solid rgba(158, 158, 207, 0.6);
+  outline: 2px solid rgba(0, 0, 0, 0.16);
   outline-offset: 2px;
 }
 
@@ -1999,7 +2001,8 @@ body {
   flex: 0 0 70px !important;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 0;
+  border: none;
   margin: 0 !important;
 }
 
@@ -2050,12 +2053,32 @@ body {
 }
 
 /* Art gallery cards: tighter corners + clear hover response */
+.gallery-page .art-display-grid .card[data-category="art"] {
+  border-radius: 6px !important;
+}
+
 .gallery-page .art-display-grid .card[data-category="art"] .gallery-media {
-  border-radius: 1px !important;
+  border-radius: 6px !important;
   transition:
     transform 0.4s ease-in-out,
     filter 0.4s ease-in-out,
     box-shadow 0.4s ease-in-out;
+}
+
+.gallery-page .gallery-filter-row {
+  margin-left: 0;
+  margin-right: 0;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gallery-page .gallery-filter-group {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 .gallery-page .art-display-grid .card[data-category="art"]:hover .gallery-media {
@@ -2068,20 +2091,21 @@ body {
 .art-display-grid .video-card {
   background: transparent !important;
   border: none !important;
+  border-radius: 6px !important;
 }
 
 .art-display-grid .video-card .animation-thumb-shell {
   position: relative;
   background: transparent !important;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 6px;
 }
 
 .art-display-grid .video-card .animation-thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 6px;
   transition: transform 0.4s ease-in-out, filter 0.4s ease-in-out;
 }
 
