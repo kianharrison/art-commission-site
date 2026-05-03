@@ -1451,6 +1451,7 @@ p {
   position: fixed;
   top: 14px;
   right: 14px;
+  margin-right: 20px;
   z-index: 210;
   display: flex;
   gap: 8px;
