@@ -1,45 +1,45 @@
 const ART_DATA = {
   1: {
-    title: "Expressive Portrait I",
+    title: "Soft Fire Gaze",
     image: "art/1.jpg",
     processImages: ["art/1.jpg", "art/1_1.png", "art/1_2.png"],
     description:
-      "A bright and expressive headshot centered on emotion, clean lighting, and character personality.",
+      "<p>A stylized portrait built around an intense expression, soft skin rendering, and a color balance that keeps the face feeling alive rather than overworked. The piece is meant to pull the viewer in through the eyes first, then keep attention with controlled highlights and subtle painterly transitions.</p><ul><li><strong>Krita:</strong> used for the early sketch, facial placement, and first composition pass.</li><li><strong>Paint Tool SAI:</strong> used for line refinement, color rendering, shading, and the final finish.</li></ul>",
   },
   2: {
-    title: "Expressive Portrait II",
+    title: "Festival Glow",
     image: "art/2.jpg",
     processImages: ["art/2.jpg", "art/2_1.png", "art/2_2.png"],
     description:
-      "A festive portrait piece with soft tonal blending and playful color atmosphere.",
+      "<p>This portrait leans into warmth and personality, with softer tonal blending and a playful atmosphere that makes the character feel immediate and approachable. The rendering is polished, but the goal was to keep the expression fresh and alive rather than overly stiff.</p><ul><li><strong>Krita:</strong> used for the planning sketch, structure pass, and early shape blocking.</li><li><strong>Paint Tool SAI:</strong> used for painting, lighting control, color blending, and final rendering.</li></ul>",
   },
   3: {
-    title: "Character Concept",
+    title: "Velvet Voltage",
     image: "art/3.png",
     processImages: ["art/3.png", "art/3_1.png", "art/3_2.png"],
     description:
-      "Stylized character artwork with stronger contrast and cinematic framing.",
+      "<p>A character illustration centered on silhouette clarity, costume presence, and a stronger sense of cinematic contrast. The composition gives it concept-art energy, while the final rendering keeps the subject readable and stylish without losing mood.</p><ul><li><strong>Krita:</strong> used for silhouette exploration, sketch construction, and layout experimentation.</li><li><strong>Paint Tool SAI:</strong> used for color rendering, detail polish, edge control, and the finished presentation.</li></ul>",
   },
   4: {
-    title: "City Vibes Illustration",
+    title: "Streetlight Daydream",
     image: "art/4.png",
     processImages: ["art/4.png", "art/4_1.png", "art/4_2.png"],
     description:
-      "A confident composition combining mood, costume detail, and polished digital rendering.",
+      "<p>This piece focuses on mood, styling, and quiet confidence, using outfit detail and pose to let the subject carry the story. The overall feel is polished and urban, with the visual rhythm doing as much storytelling as the character itself.</p><ul><li><strong>Krita:</strong> used for the composition setup, pose sketch, and early planning.</li><li><strong>Paint Tool SAI:</strong> used for rendering, color treatment, surface detail, and final cleanup.</li></ul>",
   },
   5: {
-    title: "Story Panel Artwork",
+    title: "Birthday Surprise",
     image: "art/5.jpg",
     processImages: ["art/5.jpg", "art/5_1.png", "art/5_2.png"],
     description:
-      "Narrative-focused artwork with a balanced composition and smooth painterly finish.",
+      "<p>A narrative-focused artwork designed to feel like part of a larger scene, using composition, gesture, and atmosphere to imply what happens beyond the frame. It balances painterly softness with enough structure to keep the storytelling clear at a glance.</p><ul><li><strong>Krita:</strong> used for the initial storyboard-like sketch and layout planning.</li><li><strong>Paint Tool SAI:</strong> used for painting, shadow work, color blending, and the final visual polish.</li></ul>",
   },
   6: {
-    title: "Neon Pulse Character",
+    title: "Authentic Kian",
     image: "art/6.png",
     processImages: ["art/6.png", "art/6_1.png", "art/6_2.png"],
     description:
-      "Dynamic character artwork with layered lighting and clean finishing details.",
+      "<p>Selfie illustration of Kian with a nonchalant look. The piece is built to feel personal and grounded, with the expression doing most of the storytelling while the lighting and finish keep the image crisp and modern. The goal was to preserve attitude and likeness without losing the stylized edge of the final render.</p><ul><li><strong>Krita:</strong> used for concept sketching, base planning, and rough visual direction.</li><li><strong>Paint Tool SAI:</strong> used for the full render, lighting effects, color shaping, and final detailing.</li></ul>",
   },
 };
 
@@ -99,7 +99,7 @@ if (titleEl) {
 }
 
 if (descEl) {
-  descEl.textContent = art.description;
+  descEl.innerHTML = art.description;
 }
 
 const renderImageSwitcher = () => {

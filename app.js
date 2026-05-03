@@ -26,6 +26,38 @@ if (hamburger && mobileMenu && menuItems.length) {
   });
 }
 
+const commissionTriggerBtn = document.getElementById("commission-trigger-btn");
+const commissionStatusModal = document.getElementById("commission-status-modal");
+const commissionStatusClose = document.getElementById("commission-status-close");
+
+if (commissionTriggerBtn && commissionStatusModal && commissionStatusClose) {
+  const openCommissionModal = () => {
+    commissionStatusModal.classList.add("open");
+    commissionStatusModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeCommissionModal = () => {
+    commissionStatusModal.classList.remove("open");
+    commissionStatusModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+  commissionTriggerBtn.addEventListener("click", openCommissionModal);
+  commissionStatusClose.addEventListener("click", closeCommissionModal);
+
+  commissionStatusModal.addEventListener("click", (event) => {
+    if (event.target === commissionStatusModal) {
+      closeCommissionModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && commissionStatusModal.classList.contains("open")) {
+      closeCommissionModal();
+    }
+  });
+}
+
 document.querySelectorAll('.nav-grid a[href^="#"], .nav-grid2 a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const target = document.querySelector(link.getAttribute("href"));
