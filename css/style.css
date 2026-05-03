@@ -189,7 +189,7 @@ p {
 }
 .nav-options{
   position: relative;
-  background-color:#0000001c;
+  background-color:#00000030;
   backdrop-filter: blur(8px);
   padding: 16px;
   border-radius: 50px;
@@ -199,6 +199,7 @@ p {
 .nav-options img{
   width: 24px;
   height: 24px;
+  filter: brightness(0) invert(1);
 }
 
 .nav-options p{
@@ -207,11 +208,13 @@ p {
   left: 40px;
   padding: 8px 12px;
   display: none;
+  color: white;
   transition: 0.25s;
 }
 .nav-options:hover{
   transform: translateX(46px);
   padding-right: 120px;
+  background-color: #00000040;
 }
 .nav-options:hover p{
   display: block;
@@ -787,11 +790,35 @@ p {
   min-height: 100px;
   flex-direction: column;
 }
+#footer .footer-logo-wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 7.5px;
+}
+#footer .footer-logo {
+  width: min(94.12px, 23.84vw);
+  height: auto;
+  object-fit: contain;
+}
+#footer .footer-social-links {
+  gap: 8px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+#footer .footer-social-links > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#footer .footer-social-links img {
+  filter: brightness(0) invert(1);
+}
 #footer p {
   margin: 0;
   color: white;
   font-size: 1.3rem;
   cursor: default;
+  padding-bottom: max(0px, calc(2% - 4px)) !important;
 }
 
 /* End Footer */
@@ -1463,7 +1490,7 @@ p {
   width: 40px;
   height: 40px;
   border-radius: 50px;
-  background-color: #0000001c;
+  background-color: #00000030;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.32);
   display: flex;
@@ -1479,7 +1506,7 @@ p {
 .quick-dm-btn:hover {
   width: 136px;
   transform: translateY(-1px);
-  background-color: #0000002b;
+  background-color: #00000040;
 }
 
 .quick-dm-btn img {

@@ -26,6 +26,20 @@ if (hamburger && mobileMenu && menuItems.length) {
   });
 }
 
+document.querySelectorAll('.nav-grid a[href^="#"], .nav-grid2 a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.pushState(null, "", link.getAttribute("href"));
+  });
+});
+
 const revealSelectors = [
   "#gallery",
   "#services",
