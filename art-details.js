@@ -59,6 +59,9 @@ const resolvedArtId = String(artId && ART_DATA[artId] ? artId : 1);
 let processImages = [];
 
 let activeImageIndex = 0;
+let touchStartX = 0;
+let touchStartY = 0;
+let touchActive = false;
 
 const setActiveImage = (index) => {
   if (!imageEl || !processImages.length) {
@@ -197,11 +200,62 @@ const resolveProcessImages = async () => {
   return dynamic.length > 1 ? dynamic : fallback;
 };
 
+const handleSwipeNavigation = (direction) => {
+  if (!processImages.length) {
+    return;
+  }
+
+  const nextIndex =
+    (activeImageIndex + direction + processImages.length) % processImages.length;
+  setActiveImage(nextIndex);
+};
+
+const attachSwipeHandlers = () => {
+  const stage = document.querySelector(".art-image-stage");
+  if (!stage) {
+    return;
+  }
+
+  stage.addEventListener("touchstart", (event) => {
+    const firstTouch = event.touches[0];
+    if (!firstTouch) {
+      return;
+    }
+
+    touchActive = true;
+    touchStartX = firstTouch.clientX;
+    touchStartY = firstTouch.clientY;
+  }, { passive: true });
+
+  stage.addEventListener("touchend", (event) => {
+    if (!touchActive) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    if (!touch) {
+      touchActive = false;
+      return;
+    }
+
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    touchActive = false;
+
+    if (Math.abs(deltaX) < 60 || Math.abs(deltaX) < Math.abs(deltaY)) {
+      return;
+    }
+
+    handleSwipeNavigation(deltaX < 0 ? 1 : -1);
+  }, { passive: true });
+};
+
 const initArtDetail = async () => {
   processImages = await resolveProcessImages();
   renderImageSwitcher();
   renderProcessThumbnails();
   setActiveImage(0);
+  attachSwipeHandlers();
 };
 
 initArtDetail();
