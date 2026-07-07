@@ -1490,7 +1490,7 @@ p {
 .commission-trigger-btn {
   min-height: 46px;
   padding: 11px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: none;
   background: rgba(0, 0, 0, 0.28);
   color: rgba(255, 255, 255, 0.94);
   font-size: 0.95rem;
@@ -1510,6 +1510,7 @@ p {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  color:rgba(224, 224, 224, 0.94);
 }
 
 .commission-trigger-btn:active {
