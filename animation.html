@@ -39,7 +39,6 @@
     <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true"></div>
     <nav class="mobile-menu-panel" id="mobile-menu-panel" aria-label="Mobile navigation">
       <a href="index.html">Home</a>
-      <a href="work.html">Work</a>
       <a href="illustration.html">Illustration</a>
       <a href="animation.html">Animation</a>
       <a href="about.html">About</a>
@@ -49,9 +48,8 @@
 
   <header class="site-header">
     <div class="container topbar">
-      <a href="index.html" class="brand-mark" aria-label="KianLooksBetter home">KianLooksBetter</a>
+      <a href="index.html" class="brand-mark" aria-label="KianLooksBetter home"><img class="brand-logo" src="logo white.png" alt="KianLooksBetter"></a>
       <nav class="main-nav" aria-label="Main navigation">
-        <a href="work.html">Work</a>
         <a href="illustration.html">Illustration</a>
         <a href="animation.html">Animation</a>
         <a href="about.html">About</a>
@@ -65,19 +63,18 @@
     <section class="page-hero section-surface">
       <div class="container page-intro">
         <p class="eyebrow muted">Animation</p>
-        <h1>ANIMATED STORIES, BROUGHT TO LIFE.</h1>
-        <p>Character-driven 2D animation, short films and entertaining animated content.</p>
+        <h1>2D ANIMATION.<br>STORIES WITH CHARACTER.</h1>
+        <p>Animated shorts and character-driven storytelling, brought to life through movement.</p>
         <a class="button primary" href="commissions.html">START AN ANIMATION PROJECT</a>
       </div>
     </section>
 
-    <section class="container content-block">
-      <div class="feature-video-wrap">
-        <video class="feature-video" autoplay muted loop playsinline preload="metadata" poster="art/6.png">
-          <source src="assets/videos/hero-animation-02.webm" type="video/webm">
-          <source src="assets/videos/hero-animation-02.mp4" type="video/mp4">
-        </video>
+    <section class="container content-block animation-work-section">
+      <div class="section-header compact-header">
+        <p class="eyebrow muted">Character-driven storytelling</p>
+        <h2>ANIMATED SHORTS</h2>
       </div>
+      <div class="animation-gallery-grid" data-animation-gallery aria-live="polite"></div>
     </section>
 
     <section class="container content-block">
@@ -108,12 +105,11 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand-block">
-        <a href="index.html" class="brand-mark footer-brand">KianLooksBetter</a>
+        <a href="index.html" class="brand-mark footer-brand" aria-label="KianLooksBetter home"><img class="brand-logo" src="logo white.png" alt="KianLooksBetter"></a>
         <p>Illustration, character art and animated stories with personality.</p>
       </div>
       <div class="footer-links">
         <h3>Explore</h3>
-        <a href="work.html">Work</a>
         <a href="illustration.html">Illustration</a>
         <a href="animation.html">Animation</a>
         <a href="about.html">About</a>
@@ -130,5 +126,7 @@
   </footer>
 
   <script src="app.js"></script>
+  <script src="site-navigation.js"></script>
+  <script src="animation-media.js"></script>
 </body>
 </html>

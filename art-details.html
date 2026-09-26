@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <title>Art Details | KianLooksBetter</title>
 </head>
-<body>
+<body class="studio-page inner-page">
   <div class="quick-dm-links">
     <button class="commission-trigger-btn" id="commission-trigger-btn" type="button" aria-haspopup="dialog" aria-controls="commission-status-modal">
       BOOK
@@ -47,13 +47,26 @@
     </button>
     <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" aria-hidden="true"></div>
     <nav class="mobile-menu-panel" id="mobile-menu-panel" aria-label="Mobile navigation">
-      <a href="index.html#hero">Home</a>
-      <a href="index.html#gallery">Gallery</a>
-      <a href="index.html#services">Commissions</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="illustration.html">Illustration</a>
+      <a href="animation.html">Animation</a>
       <a href="about.html">About</a>
+      <a href="commissions.html">Commissions</a>
     </nav>
   </div>
+
+  <header class="site-header inner-site-header">
+    <div class="container topbar">
+      <a href="index.html" class="brand-mark" aria-label="KianLooksBetter home"><img class="brand-logo" src="logo white.png" alt="KianLooksBetter"></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="illustration.html">Illustration</a>
+        <a href="animation.html">Animation</a>
+        <a href="about.html">About</a>
+        <a href="commissions.html">Commissions</a>
+      </nav>
+      <a class="nav-button" href="commissions.html">START A COMMISSION</a>
+    </div>
+  </header>
 
   <div class="nav-grid2">
     <a href="index.html#hero" data-after="Home"><div class="nav-options2"><img src="icons/home-icon.svg"><p style="margin-left: -4px;">Home</p></div></a>
@@ -93,7 +106,7 @@
   <section id="footer">
     <div class="footer container">
       <div class="footer-logo-wrap">
-        <img class="footer-logo" src="logo.png" alt="KianLooksBetter logo">
+        <img class="footer-logo" src="logo white.png" alt="KianLooksBetter">
       </div>
       <div class="footer-social-links" style="display: flex; padding-top: 2%; padding-bottom: 10px;">
         <div style="opacity: 0.5;"><a href="https://www.youtube.com/@kianlooksbetter" target="_blank"><img src="icons/youtube-icon.svg" /></a></div>
@@ -113,6 +126,7 @@
   </div>
 
   <script src="./app.js"></script>
+  <script src="site-navigation.js"></script>
   <script src="./art-details.js"></script>
 </body>
 </html>
