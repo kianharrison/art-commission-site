@@ -1,12 +1,10 @@
 window.KLB_ANIMATION_MEDIA = [
   {
     mp4: "assets/Animation/Animation_01.mp4",
-    poster: "art/3.png",
     alt: "Character-driven animation preview"
   },
   {
     mp4: "assets/Animation/Animation_02.mp4",
-    poster: "art/6.png",
     alt: "Animated storytelling preview"
   }
 ];
@@ -50,6 +48,45 @@ window.KLB_ANIMATION_MEDIA = [
     }
     video.play().catch(() => {});
   };
+
+  const videoViewer = document.createElement("div");
+  videoViewer.className = "animation-lightbox";
+  videoViewer.setAttribute("aria-hidden", "true");
+  videoViewer.innerHTML = '<button class="animation-lightbox-close" type="button" aria-label="Close animation viewer">CLOSE <span aria-hidden="true">×</span></button><div class="animation-lightbox-stage" role="dialog" aria-modal="true" aria-label="Animation viewer"></div>';
+
+  const closeViewer = () => {
+    videoViewer.classList.remove("open");
+    videoViewer.setAttribute("aria-hidden", "true");
+    videoViewer.querySelector(".animation-lightbox-stage").replaceChildren();
+    document.body.style.overflow = "";
+  };
+
+  const openViewer = (item) => {
+    const expandedVideo = createVideo(item, { controls: true });
+    expandedVideo.muted = false;
+    expandedVideo.preload = "metadata";
+    expandedVideo.querySelectorAll("source[data-src]").forEach((source) => {
+      source.src = source.dataset.src;
+      source.removeAttribute("data-src");
+    });
+    const stage = videoViewer.querySelector(".animation-lightbox-stage");
+    stage.replaceChildren(expandedVideo);
+    videoViewer.classList.add("open");
+    videoViewer.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    expandedVideo.load();
+    expandedVideo.play().catch(() => {});
+    videoViewer.querySelector(".animation-lightbox-close").focus();
+  };
+
+  document.body.append(videoViewer);
+  videoViewer.querySelector(".animation-lightbox-close").addEventListener("click", closeViewer);
+  videoViewer.addEventListener("click", (event) => {
+    if (event.target === videoViewer) closeViewer();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && videoViewer.classList.contains("open")) closeViewer();
+  });
 
   const feature = document.querySelector("[data-animation-feature]");
   if (feature && media.length) {
@@ -98,9 +135,19 @@ window.KLB_ANIMATION_MEDIA = [
     media.forEach((item) => {
       const figure = document.createElement("figure");
       figure.className = "animation-gallery-item";
+      figure.tabIndex = 0;
+      figure.setAttribute("role", "button");
+      figure.setAttribute("aria-label", `Open ${item.alt || "animation"}`);
       const video = createVideo(item);
       figure.append(video);
       gallery.append(figure);
+      figure.addEventListener("click", () => openViewer(item));
+      figure.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openViewer(item);
+        }
+      });
       if (observer) {
         observer.observe(video);
       } else {

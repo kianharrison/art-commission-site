@@ -108,75 +108,81 @@ document.querySelectorAll('.nav-grid a[href^="#"], .nav-grid2 a[href^="#"], .mob
   });
 });
 
-const revealSelectors = [
-  "#gallery",
-  "#services",
-  "#contact",
-  "#footer",
-  ".section-title",
-  ".gallery-filter-row",
-  ".photo-gallery > div",
-  ".photo-gallery2 .card",
-  "#services .service-item",
-  "#contact .contact-item",
-  ".button",
-  ".terms-service-block",
-  ".terms-service-block li",
-  "#reviews",
-  ".about-profile",
-  ".selected-img-section",
-  ".art-detail-image-wrap",
-  ".art-detail-info-wrap",
-  ".service-detail-panel",
-  ".service-samples-title",
-  ".sample-card",
+const revealGroups = [
+  { selector: ".inner-page .page-intro > :not(.button)" },
+  { selector: ".content-block .section-header, .section-title" },
+  { selector: ".services-overview .category-block", stagger: 100 },
+  { selector: ".selected-work .section-header, .selected-work .work-category-links" },
+  { selector: ".selected-work .work-item", stagger: 100 },
+  { selector: ".testimonials .testimonial", stagger: 100 },
+  { selector: ".commission-banner" },
+  { selector: ".about-section .about-media, .about-section .about-copy", stagger: 100 },
+  { selector: ".illustration-gallery .gallery-art", stagger: 100 },
+  { selector: ".animation-gallery-item", stagger: 100 },
+  { selector: ".pricing-grid .price-block, .service-list-grid .service-list-card", stagger: 100 },
+  { selector: ".process-steps .process-step", stagger: 100 },
+  { selector: ".about-layout .about-photo-wrap, .about-layout .about-story", stagger: 100 },
+  { selector: ".quote-panel, .commission-form-panel, .commission-faq .faq-item", stagger: 100 },
+  { selector: ".photo-gallery > div, .photo-gallery2 .card", stagger: 100 },
+  { selector: "#services .service-item, #contact .contact-item", stagger: 100 },
+  { selector: ".terms-service-block, .about-profile, .selected-img-section" },
+  { selector: ".art-detail-image-wrap, .art-detail-info-wrap", stagger: 100 },
+  { selector: ".service-detail-panel, .service-samples-title" },
+  { selector: ".sample-card, .process-image", stagger: 100 },
 ];
 
-const revealTargets = document.querySelectorAll(revealSelectors.join(", "));
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const revealObserver = !prefersReducedMotion && "IntersectionObserver" in window
+  ? new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-const applyStagger = (selector, step) => {
-  document.querySelectorAll(selector).forEach((element, index) => {
-    element.style.setProperty("--reveal-delay", `${index * step}ms`);
-  });
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -8% 0px",
+      }
+    )
+  : null;
+
+const revealedElements = new Set();
+const registerReveal = (element, delay = 0) => {
+  if (revealedElements.has(element)) {
+    return;
+  }
+
+  revealedElements.add(element);
+  element.style.setProperty("--reveal-delay", `${delay}ms`);
+  element.classList.add("reveal-ready");
+
+  if (revealObserver) {
+    revealObserver.observe(element);
+  } else {
+    element.classList.add("revealed");
+  }
 };
 
-applyStagger(".photo-gallery > div", 80);
-applyStagger(".photo-gallery2 .card", 70);
-applyStagger("#services .service-item", 90);
-applyStagger("#contact .contact-item", 110);
-applyStagger(".process-image", 60);
-applyStagger(".sample-card", 70);
-
-revealTargets.forEach((element) => {
-  element.classList.add("reveal-ready");
+revealGroups.forEach(({ selector, stagger = 0 }) => {
+  document.querySelectorAll(selector).forEach((element, index) => {
+    registerReveal(element, index * stagger);
+  });
 });
 
-if (prefersReducedMotion || !("IntersectionObserver" in window)) {
-  revealTargets.forEach((element) => {
-    element.classList.add("revealed");
+// Animation cards are created after this shared script runs, so register them as they arrive.
+const animationGallery = document.querySelector("[data-animation-gallery]");
+if (animationGallery && "MutationObserver" in window) {
+  const animationRevealObserver = new MutationObserver(() => {
+    animationGallery.querySelectorAll(".animation-gallery-item").forEach((element, index) => {
+      registerReveal(element, index * 100);
+    });
   });
-} else {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        entry.target.classList.add("revealed");
-        observer.unobserve(entry.target);
-      });
-    },
-    {
-      threshold: 0.16,
-      rootMargin: "0px 0px -8% 0px",
-    }
-  );
-
-  revealTargets.forEach((element) => {
-    revealObserver.observe(element);
-  });
+  animationRevealObserver.observe(animationGallery, { childList: true });
 }
 
 const previewModal = document.getElementById("image-preview-modal");

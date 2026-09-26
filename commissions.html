@@ -41,8 +41,8 @@
       <a href="index.html">Home</a>
       <a href="illustration.html">Illustration</a>
       <a href="animation.html">Animation</a>
-      <a href="about.html">About</a>
       <a href="commissions.html">Commissions</a>
+      <a href="about.html">About</a>
     </nav>
   </div>
 
@@ -52,8 +52,8 @@
       <nav class="main-nav" aria-label="Main navigation">
         <a href="illustration.html">Illustration</a>
         <a href="animation.html">Animation</a>
-        <a href="about.html">About</a>
         <a href="commissions.html">Commissions</a>
+        <a href="about.html">About</a>
       </nav>
       <a class="nav-button" href="commissions.html">START A COMMISSION</a>
     </div>
@@ -97,17 +97,23 @@
           <h2>START AN INQUIRY</h2>
           <p>Tell me about the project, references and deadline. You can also reach out directly by Instagram or WhatsApp.</p>
         </div>
-        <form class="commission-form">
+        <form class="commission-form" id="commission-form">
           <div class="field-grid">
-            <label><span>Name</span><input type="text" name="name" placeholder="Your name"></label>
-            <label><span>Email</span><input type="email" name="email" placeholder="you@example.com"></label>
-            <label><span>Service</span><select name="service"><option>Illustration</option><option>Animation</option></select></label>
-            <label><span>Package</span><select name="package"><option>Headshot</option><option>Bust</option><option>Torso</option><option>Full Body</option></select></label>
-            <label class="full-width"><span>Description</span><textarea name="description" rows="4" placeholder="Describe your idea, references or project goals"></textarea></label>
+            <label><span>Name</span><input type="text" name="name" placeholder="Your name" required></label>
+            <label><span>Email</span><input type="email" name="email" placeholder="you@example.com" required></label>
+            <label><span>Service</span><select id="commission-service" name="service" required><option value="illustration">Illustration</option><option value="animation">Animation</option></select></label>
+            <label><span id="commission-package-label">Package</span><select id="commission-package" name="package" required></select></label>
+            <label class="full-width"><span>Description</span><textarea id="commission-description" name="description" rows="4" placeholder="Describe your idea, references or project goals"></textarea><small class="field-hint" id="commission-description-hint">Add references, scope and anything else that helps describe the project.</small></label>
             <label class="full-width"><span>Deadline</span><input type="text" name="deadline" placeholder="e.g. 2 weeks"></label>
           </div>
           <button class="button primary" type="submit">SEND INQUIRY</button>
         </form>
+        <aside class="commission-quick-contact" aria-label="Quick contact options">
+          <p>Need a quicker response?</p>
+          <div>
+            <a class="button secondary" href="https://wa.me/237676636111" target="_blank" rel="noopener noreferrer">WHATSAPP ME</a>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -125,6 +131,19 @@
         <li><strong>Copyright:</strong> I reserve the right to post completed work in my portfolio where appropriate.</li>
         <li><strong>Content restrictions:</strong> I do not accept commissions involving NSFW, heavy gore, or hateful content.</li>
       </ul>
+    </section>
+
+    <section class="container content-block commission-faq" aria-labelledby="faq-title">
+      <div class="section-header compact-header">
+        <p class="eyebrow muted">Helpful details</p>
+        <h2 id="faq-title">FREQUENTLY ASKED QUESTIONS</h2>
+      </div>
+      <div class="faq-list">
+        <article class="faq-item"><h3><button type="button" aria-expanded="false">How long does a commission take?<span aria-hidden="true">+</span></button></h3><div class="faq-answer"><p>Turnaround depends on the type and scope of the project. Smaller illustrations can usually be completed faster, while animation may take longer depending on duration, complexity and revisions. Once I understand your project, I'll share a clearer estimate.</p></div></article>
+        <article class="faq-item"><h3><button type="button" aria-expanded="false">How many revisions are included?<span aria-hidden="true">+</span></button></h3><div class="faq-answer"><p>Revisions depend on the commission and its stage. We'll make sure the direction is right before moving too far into production. Larger animation projects can have defined revision stages agreed before production begins.</p></div></article>
+        <article class="faq-item"><h3><button type="button" aria-expanded="false">Can I request something that isn't listed?<span aria-hidden="true">+</span></button></h3><div class="faq-answer"><p>Absolutely. The packages are starting points, not limits. Choose Other and describe your custom illustration or animation idea. I'll review it and suggest the best approach.</p></div></article>
+        <article class="faq-item"><h3><button type="button" aria-expanded="false">Can we discuss my project before I place an order?<span aria-hidden="true">+</span></button></h3><div class="faq-answer"><p>Yes. Send an enquiry through the form or use the quick-contact options to discuss the project directly. For larger projects, a call can be arranged on WhatsApp.</p></div></article>
+      </div>
     </section>
   </main>
 
@@ -153,5 +172,6 @@
 
   <script src="app.js"></script>
   <script src="site-navigation.js"></script>
+  <script src="commission-form.js"></script>
 </body>
 </html>
